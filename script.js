@@ -22,6 +22,10 @@ $('#startButton').on('click', function(a){
     $('#exitButton').html('Exit');
     exitButton();
     theProfile();
+    addGameButtons();
+
+
+    
 });
 
 
@@ -40,5 +44,13 @@ const exitButton = function(){
 
 const theProfile = function(){
     $('.gameArea').html(`<img id = 'theProfileImage' src ="https://cdn.pixabay.com/photo/2021/01/23/07/53/dogs-5941898__340.jpg">`);
-
+}
+const addGameButtons = function(){
+    $('.gameArea').append('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
+}
+const marriedProfile = function(){
+    $('.marry').html(`<img id = 'marryProfile' src="https://cdn.pixabay.com/photo/2018/05/21/04/21/animal-3417350__480.jpg"`);
+}
+const endResult = function(){
+    $('.endGameResult').append(`<p>1</p><p>2</p><p>3</p>`);
 }
