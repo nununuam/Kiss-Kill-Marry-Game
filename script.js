@@ -23,6 +23,9 @@ $('#startButton').on('click', function(a){
     exitButton();
     theProfile();
     addGameButtons();
+    kissButton();
+    killButton();
+    marryButton();
 
 
     
@@ -36,7 +39,8 @@ $('#howToPlayButton').on('click', function(b){
 });
 
 const exitButton = function(){
-    $('#exitButton').on('click', function(){
+    $('#exitButton').on('click', function(c){
+        c.preventDefault();
         console.log('exit button works')
     });
     
@@ -47,6 +51,27 @@ const theProfile = function(){
 }
 const addGameButtons = function(){
     $('.gameArea').append('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
+}
+const killButton= function(){
+    $('#killButton').on('click', function(d){
+        d.preventDefault();
+        
+        console.log('killButton works')
+    })
+};
+const kissButton = function(){
+    $('#kissButton').on('click', function(e){
+        e.preventDefault();
+
+        console.log('kissButton works')
+    })
+}
+const marryButton = function(){
+    $('#marryButton').on('click', function(f){
+        f.preventDefault();
+
+        console.log('marryButton woks')
+    })
 }
 const marriedProfile = function(){
     $('.marry').html(`<img id = 'marryProfile' src="https://cdn.pixabay.com/photo/2018/05/21/04/21/animal-3417350__480.jpg"`);
