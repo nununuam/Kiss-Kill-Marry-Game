@@ -75,13 +75,14 @@ $('#startButton').on('click', function(a){
     killButton();
     marryButton();
     }
-    else if(indexNum == celebrities.length){
+    else{
         $('.initial').empty();
         $('.profiles').empty();
         $('gameButtons').empty();
         
-        endResult();
+        
     }
+    endResult();
     
 });
 
@@ -121,7 +122,9 @@ const killButton= function(){
     $('#killButton').on('click', function(d){
         d.preventDefault();
 
-        peopleKiiled.pop(celebrities[indexNum]['name']);
+        peopleKiiled.push(celebrities[indexNum]['name']);
+        console.log(peopleKiiled);
+        console.log(celebrities[indexNum]['name']);
 
         console.log('killButton works')
         indexNum += 1;
@@ -134,7 +137,8 @@ const killButton= function(){
 const kissButton = function(){
     $('#kissButton').on('click', function(e){
         e.preventDefault();
-        peoppleKissed.pop(celebrities[indexNum]['name']);
+        peoppleKissed.push(celebrities[indexNum]['name']);
+        console.log(peoppleKissed);
         console.log('kissButton works')
         indexNum += 1;
         console.log(indexNum);
@@ -145,8 +149,8 @@ const kissButton = function(){
 const marryButton = function(){
     $('#marryButton').on('click', function(f){
         f.preventDefault();
-        peopleMarried.pop(celebrities[indexNum]['name']);
-
+        peopleMarried.push(celebrities[indexNum]['name']);
+        console.log(peopleMarried);
         marriedProfile();
         console.log('marryButton woks')
         indexNum += 1;
@@ -160,8 +164,9 @@ const marriedProfile = function(){
 }
 
 const endResult = function(){
-
+    $('.endGameResult').html('<h3>Game Over</h3>');
     $('.endGameResult').append(`<p>1</p><p>2</p><p>3</p>`);
+    $('.endGameResult').append(`<div><p> "${celebrities[indexNum]['name']}"</p> <img id = 'marryProfile' src="${celebrities[indexNum]['img']}"</img></div>`);
 }
 
 
