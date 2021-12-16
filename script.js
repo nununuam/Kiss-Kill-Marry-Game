@@ -59,7 +59,7 @@ $('#startButton').on('click', function(a){
     a.preventDefault();
     console.log(celebrities.length);
 
-    if (indexNum < celebrities.length){
+    
     //take away the howtoplay intructions
     $('.gameArea').empty();
 
@@ -74,17 +74,21 @@ $('#startButton').on('click', function(a){
     kissButton();
     killButton();
     marryButton();
-    }
+});
+const check= function(){if (indexNum < celebrities.length){
+    console.log('hi')
+}
     else{
         $('.initial').empty();
         $('.profiles').empty();
         $('gameButtons').empty();
         
         
-    }
-    endResult();
+    }}
+
     
-});
+    
+
 
 
 
@@ -112,7 +116,9 @@ const exitButton = function(){
 }
 
 const theProfile = function(indexNum){
+    console.log(indexNum)
     $('.profiles').html(`<img id = 'theProfileImage' src ="${celebrities[indexNum]['img']}">`);
+    
 }
 const addGameButtons = function(){
     $('.gameButtons').html('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
@@ -131,6 +137,7 @@ const killButton= function(){
     
         console.log(indexNum);
         theProfile(indexNum);
+        check();
     })
 };
 
@@ -143,6 +150,7 @@ const kissButton = function(){
         indexNum += 1;
         console.log(indexNum);
         theProfile(indexNum);
+        check();
     })
 }
 
@@ -156,6 +164,7 @@ const marryButton = function(){
         indexNum += 1;
         console.log(indexNum);
         theProfile(indexNum);
+        check();
     })
 }
 
