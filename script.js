@@ -48,9 +48,9 @@ let peopleKiiled = [];
 let peoppleKissed = [];
 let peopleMarried = [];
 
-let numsClickedTraker = 0;
+let indexNum = 0;
 
-let randomTime = Math.floor(Math.random(2)*7)
+
 
 
 
@@ -67,8 +67,14 @@ $('#startButton').on('click', function(a){
     exitButton();
     
     gameContinue();
-        
+    theProfile(indexNum);
+    console.log();
+    addGameButtons();
     
+    kissButton();
+    killButton();
+    marryButton();
+    endResult();
    
     
 });
@@ -80,21 +86,10 @@ $('#howToPlayButton').on('click', function(b){
     $('.gameArea').html('<p class ="instruction">Every turn you will get a profile. You get to pick if you want to kiss kill or marry them by clicking the button. You have certain amount of time allocated before the game end. The time allocated is randomize. Who every you choose to marry at the end of the game will reveal if you actually ended up marrying them. Remember, whoever you choose to marry last at the end of the round is who you will see if it works out.</p>');
 });
 
+let celebritiesIndex= celebrities[0];
+
 let gameContinue = function(){
-    for (let i=0; i<celebrities.length; i++){
-        theProfile(i);
-        console.log(i);
-        addGameButtons();
-        
-        kissButton(i);
-        killButton(i);
-        marryButton(i);
-        //console.log(peopleMarried);
-        //console.log(peopleKiiled);
-       // console.log(peoppleKissed);
-    }
-    
-    endResult();
+
 }
 
 const exitButton = function(){
@@ -105,49 +100,53 @@ const exitButton = function(){
     
 }
 
-const theProfile = function(i){
-    $('.gameArea').html(`<img id = 'theProfileImage' src ="${celebrities[i]['img']}">`);
+const theProfile = function(indexNum){
+    $('.profiles').html(`<img id = 'theProfileImage' src ="${celebrities[indexNum]['img']}">`);
 }
 const addGameButtons = function(){
-    $('.gameArea').append('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
+    $('.gameButtons').append('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
 }
 
-const killButton= function(i){
+const killButton= function(){
     $('#killButton').on('click', function(d){
         d.preventDefault();
 
-        peopleKiiled.pop(celebrities[i]['name']);
+        peopleKiiled.pop(celebrities[indexNum]['name']);
 
         console.log('killButton works')
-        numsClickedTraker += 1;
-        console.log(numsClickedTraker);
+        indexNum += 1;
+    
+        console.log(indexNum);
+        theProfile(indexNum);
     })
 };
 
-const kissButton = function(i){
+const kissButton = function(){
     $('#kissButton').on('click', function(e){
         e.preventDefault();
-        peoppleKissed.pop(celebrities[i]['name']);
+        peoppleKissed.pop(celebrities[indexNum]['name']);
         console.log('kissButton works')
-        numsClickedTraker += 1;
-        console.log(numsClickedTraker);
+        indexNum += 1;
+        console.log(indexNum);
+        theProfile(indexNum);
     })
 }
 
-const marryButton = function(i){
+const marryButton = function(){
     $('#marryButton').on('click', function(f){
         f.preventDefault();
-        peopleMarried.pop(celebrities[i]['name']);
+        peopleMarried.pop(celebrities[indexNum]['name']);
 
-        marriedProfile(i);
+        marriedProfile();
         console.log('marryButton woks')
-        numsClickedTraker += 1;
-        console.log(numsClickedTraker);
+        indexNum += 1;
+        console.log(indexNum);
+        theProfile(indexNum);
     })
 }
 
-const marriedProfile = function(i){
-    $('.marry').html(`<img id = 'marryProfile' src="${celebrities[i]['img']}"><p>You are currently trying to marry ${celebrities[i]['name']}.`);
+const marriedProfile = function(){
+    $('.marry').html(`<img id = 'marryProfile' src="${celebrities[indexNum]['img']}"><p>You are currently trying to marry ${celebrities[indexNum]['name']}.`);
 }
 
 const endResult = function(){

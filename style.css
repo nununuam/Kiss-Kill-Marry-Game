@@ -6,6 +6,11 @@ body{
     margin: 20px;
     width: 200px;
     height: auto;
+    background: #edf0f4;        
+    padding: 10px 10px 10px 10px;
+    border-radius: 10%;
+    justify-content: center;
+
 }
 button{
     display: inline-block;
@@ -15,4 +20,25 @@ button{
 #marryProfile{
     width: 100px;
     height: auto;
+    border-radius: 10%;
+}
+
+
+@media (max-width: 500px) {
+    h1{
+      font-size: 50px;
+      margin-top: 20px;
+      line-height: 40px;
+    }
+    .initial {
+      font-size: 20px;
+      margin: 20px 0 30px 0;
+    }
+    div {
+      margin: 20px 12px 0 12px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 24px;
+    }
 }
