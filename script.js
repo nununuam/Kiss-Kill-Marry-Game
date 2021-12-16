@@ -57,14 +57,13 @@ let indexNum = 0;
 //WebPage section:
 $('#startButton').on('click', function(a){
     a.preventDefault();
+    console.log(celebrities.length);
+
+    if (indexNum < celebrities.length){
     //take away the howtoplay intructions
-    if (indexNum <= celebrities.length){
     $('.gameArea').empty();
 
     console.log('yay');
-  
-    $('#startButton').attr('id', 'exitButton')
-    $('#exitButton').html('Exit');
     exitButton();
     
     gameContinue();
@@ -75,8 +74,8 @@ $('#startButton').on('click', function(a){
     kissButton();
     killButton();
     marryButton();
-    
-    }else if( indexNum = celebrities.length){
+    }
+    else if(indexNum == celebrities.length){
         $('.initial').empty();
         $('.profiles').empty();
         $('gameButtons').empty();
@@ -84,9 +83,8 @@ $('#startButton').on('click', function(a){
         endResult();
     }
     
-   
-    
 });
+
 
 
 $('#howToPlayButton').on('click', function(b){
@@ -95,7 +93,7 @@ $('#howToPlayButton').on('click', function(b){
     $('.gameArea').html('<p class ="instruction">Every turn you will get a profile. You get to pick if you want to kiss kill or marry them by clicking the button. You have certain amount of time allocated before the game end. The time allocated is randomize. Who every you choose to marry at the end of the game will reveal if you actually ended up marrying them. Remember, whoever you choose to marry last at the end of the round is who you will see if it works out.</p>');
 });
 
-let celebritiesIndex= celebrities[0];
+
 
 let gameContinue = function(){
 
@@ -103,6 +101,8 @@ let gameContinue = function(){
 
 let exitButtonClass = '#exitButton';
 const exitButton = function(){
+    $('#startButton').attr('id', 'exitButton')
+    $('#exitButton').html('Exit');
     $(exitButtonClass).on('click', function(c){
         c.preventDefault();
         console.log('exit button works')
@@ -114,7 +114,7 @@ const theProfile = function(indexNum){
     $('.profiles').html(`<img id = 'theProfileImage' src ="${celebrities[indexNum]['img']}">`);
 }
 const addGameButtons = function(){
-    $('.gameButtons').append('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
+    $('.gameButtons').html('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
 }
 
 const killButton= function(){
