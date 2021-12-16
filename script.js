@@ -1,5 +1,5 @@
 
-const Celebrities= [{name:'Benedict Cumberbatch', 
+const celebrities= [{name:'Benedict Cumberbatch', 
                         age:'45', 
                         height:`6'0"`, 
                         funFact:'Play Sherlock', 
@@ -68,6 +68,7 @@ $('#startButton').on('click', function(a){
     
     gameContinue();
         
+    
    
     
 });
@@ -80,15 +81,20 @@ $('#howToPlayButton').on('click', function(b){
 });
 
 let gameContinue = function(){
-    if(numsClickedTraker<=4){
-        theProfile();
+    for (let i=0; i<celebrities.length; i++){
+        theProfile(i);
+        console.log(i);
         addGameButtons();
-        kissButton();
-        killButton();
-        marryButton();
-    }else{
-
+        
+        kissButton(i);
+        killButton(i);
+        marryButton(i);
+        //console.log(peopleMarried);
+        //console.log(peopleKiiled);
+       // console.log(peoppleKissed);
     }
+    
+    endResult();
 }
 
 const exitButton = function(){
@@ -99,43 +105,51 @@ const exitButton = function(){
     
 }
 
-const theProfile = function(){
-    $('.gameArea').html(`<img id = 'theProfileImage' src ="https://cdn.pixabay.com/photo/2021/01/23/07/53/dogs-5941898__340.jpg">`);
+const theProfile = function(i){
+    $('.gameArea').html(`<img id = 'theProfileImage' src ="${celebrities[i]['img']}">`);
 }
 const addGameButtons = function(){
     $('.gameArea').append('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
 }
 
-const killButton= function(){
+const killButton= function(i){
     $('#killButton').on('click', function(d){
         d.preventDefault();
-        
+
+        peopleKiiled.pop(celebrities[i]['name']);
+
         console.log('killButton works')
         numsClickedTraker += 1;
         console.log(numsClickedTraker);
     })
 };
-const kissButton = function(){
+
+const kissButton = function(i){
     $('#kissButton').on('click', function(e){
         e.preventDefault();
-
+        peoppleKissed.pop(celebrities[i]['name']);
         console.log('kissButton works')
         numsClickedTraker += 1;
         console.log(numsClickedTraker);
     })
 }
-const marryButton = function(){
+
+const marryButton = function(i){
     $('#marryButton').on('click', function(f){
         f.preventDefault();
+        peopleMarried.pop(celebrities[i]['name']);
 
+        marriedProfile(i);
         console.log('marryButton woks')
         numsClickedTraker += 1;
         console.log(numsClickedTraker);
     })
 }
-const marriedProfile = function(){
-    $('.marry').html(`<img id = 'marryProfile' src="https://cdn.pixabay.com/photo/2018/05/21/04/21/animal-3417350__480.jpg"`);
+
+const marriedProfile = function(i){
+    $('.marry').html(`<img id = 'marryProfile' src="${celebrities[i]['img']}"><p>You are currently trying to marry ${celebrities[i]['name']}.`);
 }
+
 const endResult = function(){
 
     $('.endGameResult').append(`<p>1</p><p>2</p><p>3</p>`);

@@ -11,3 +11,8 @@ button{
     display: inline-block;
     justify-content: center;
 }
+
+#marryProfile{
+    width: 100px;
+    height: auto;
+}
