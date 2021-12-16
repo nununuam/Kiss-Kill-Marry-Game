@@ -58,6 +58,7 @@ let indexNum = 0;
 $('#startButton').on('click', function(a){
     a.preventDefault();
     //take away the howtoplay intructions
+    if (indexNum <= celebrities.length){
     $('.gameArea').empty();
 
     console.log('yay');
@@ -74,7 +75,15 @@ $('#startButton').on('click', function(a){
     kissButton();
     killButton();
     marryButton();
-    endResult();
+    
+    }else if( indexNum = celebrities.length){
+        $('.initial').empty();
+        $('.profiles').empty();
+        $('gameButtons').empty();
+        
+        endResult();
+    }
+    
    
     
 });
@@ -92,8 +101,9 @@ let gameContinue = function(){
 
 }
 
+let exitButtonClass = '#exitButton';
 const exitButton = function(){
-    $('#exitButton').on('click', function(c){
+    $(exitButtonClass).on('click', function(c){
         c.preventDefault();
         console.log('exit button works')
     });
