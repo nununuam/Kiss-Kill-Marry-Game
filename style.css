@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Open+Sans+Condensed:wght@300&family=Oswald:wght@200&family=Roboto+Mono:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 body{
     text-align: center;
@@ -10,7 +11,6 @@ p{
     font-family: 'Roboto Mono', monospace;
 }
 #theProfileImage{
-    margin: 20px;
     width: 300px;
     height: auto;
     background: #FDB750;        
@@ -45,7 +45,15 @@ button{
 h3{
     font-size: 40px;
     margin-top: 60px;
-    
+    border-radius: 10%;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+h2{
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+   
+
 }
 h1{
     font-size: 80px;
@@ -85,7 +93,6 @@ h1{
         
     }
     #theProfileImage{
-        margin-top: 10px;
         width: 200px;
         height: auto;
         background: #FDB750;        

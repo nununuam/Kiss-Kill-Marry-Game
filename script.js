@@ -1,4 +1,4 @@
-
+//All the celebrity Datas
 const celebrities = [{
     name: 'Benedict Cumberbatch',
     age: '45',
@@ -53,21 +53,13 @@ const celebrities = [{
     img: 'https://www.lifeandstylemag.com/wp-content/uploads/2016/09/jennifer-lopez.jpg'
 },
 ]
-console.log(celebrities.length);
-
-
+//keeping track of user actions in global variables
 let peopleKiiled = [];
 let peoppleKissed = [];
 let peopleMarried = [];
-let singlePeople = [];
-
 let numClicked = 0;
 
-$('div').on('click','#howToPlayButton', function (b) {
-    b.preventDefault();
 
-    $('.gameArea').html('<p class ="instruction">Every turn you will get a profile. You get to pick if you want to kiss kill or marry them by clicking the button. You have certain amount of time allocated before the game end. The time allocated is randomize. Who every you choose to marry at the end of the game will reveal if you actually ended up marrying them. Remember, whoever you choose to marry last at the end of the round is who you will see if it works out.</p>');
-});
 
 
 //WebPage section:
@@ -115,7 +107,7 @@ const exitButton = function () {
 
 const theProfile = function (numClicked) {
     console.log(numClicked)
-    $('.profiles').html(`<img id = 'theProfileImage' src ="${celebrities[numClicked]['img']}">`);
+    $('.profiles').html(`<h2>${celebrities[numClicked]['name']}</h2><img id = 'theProfileImage' src ="${celebrities[numClicked]['img']}"><p>Fun Fact: ${celebrities[numClicked]['funFact']}</p>`);
 
 }
 const addGameButtons = function () {
@@ -198,7 +190,7 @@ const endResult = function (numClicked) {
 
     console.log(numClicked);
 
-    $('.endGameResult').html('<h3>Congratulation</h3>');
+    $('.endGameResult').html('<h3>Congratulation!</h3>');
 
     $('.endGameResult').append(`<p>You have kiss ${peoppleKissed.length} people.</p><p>You have killed ${peopleKiiled.length} people.</p><p>You have attempted to marry ${peopleMarried.length} amount of people.</p>`);
 
@@ -208,20 +200,11 @@ const endResult = function (numClicked) {
 
 }
 
-const successfullyMarried = function(){
-    if (peopleMarried[peopleMarried.length-1]['status'] = 'single'){
-        return (`${peopleMarried[peopleMarried.length-1]['status']}. The union is a fail`)
-    }else{
-        return (`${peopleMarried[peopleMarried.length-1]['status']}. The union is a success.`)
-    }
-    
-}
-
-    $('.endGameResult').on('click','.restartButton', function (g) {
-        console.log('restarting')
-        g.preventDefault();
-        window.location.reload();
-    })
+$('.endGameResult').on('click','.restartButton', function (g) {
+    console.log('restarting')
+    g.preventDefault();
+    window.location.reload();
+})
 
 
 
