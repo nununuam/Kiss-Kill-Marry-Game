@@ -4,7 +4,7 @@ const celebrities = [{
     age: '45',
     height: `6'0"`,
     funFact: 'Play Sherlock',
-    status: 'married',
+    status: 'married. Your mission to marry is a fail.',
     img: 'https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTgxMDEwMDE1MDUyNjM3NTQ0/cumberbatch_179663904jpg.jpg'
 },
 
@@ -13,7 +13,7 @@ const celebrities = [{
     age: '38',
     height: `6'3"`,
     funFact: 'Australian',
-    status: 'married',
+    status: 'married. Your mission to marry is a fail.',
     img: 'https://www.the-sun.com/wp-content/uploads/sites/6/2021/05/c81b7b96-3fea-47b0-bc67-c695c75f0a95.jpg'
 },
 
@@ -22,7 +22,7 @@ const celebrities = [{
     age: '53',
     height: `6'2"`,
     funFact: "Can solve Rubik's Cube in 55 seconds",
-    status: 'married',
+    status: 'married. Your mission to marry is a fail.',
     img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL0tz9q7U2dVBL6qqp-A-WDMyktyZSAJdavwiUcGEB7YkXYwo0p2E3BYAGVbhMcywT6b4&usqp=CAU'
 },
 
@@ -31,7 +31,7 @@ const celebrities = [{
     age: '29',
     height: `5'5"`,
     funFact: 'Play Gianna on Barney',
-    status: 'single',
+    status: 'single. Your mission to marry is a success.',
     img: 'https://www.bollywoodhungama.com/wp-content/uploads/2021/12/Selena-Gomez-invests-in-15-billion-grocery-delivery-company-Gopuff-1.jpg'
 },
 
@@ -40,7 +40,7 @@ const celebrities = [{
     age: '52',
     height: `5'5"`,
     funFact: 'From Sherman Oaks, CA',
-    status: 'single',
+    status: 'single. Your mission to marry is a success.',
     img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ja3-longform-lead-1544370437.jpg?crop=0.752xw:1.00xh;0.125xw,0&resize=640:*'
 },
 
@@ -49,7 +49,7 @@ const celebrities = [{
     age: '52',
     height: `5'5"`,
     funFact: 'From The Bronx, NY',
-    status: 'single',
+    status: 'single. Your mission to marry is a success.',
     img: 'https://www.lifeandstylemag.com/wp-content/uploads/2016/09/jennifer-lopez.jpg'
 },
 ]
@@ -77,7 +77,9 @@ $('#startButton').on('click', function (a) {
 
 
     //take away the howtoplay intructions
+    $('h1').empty();
     $('.gameArea').empty();
+    $('.howToPlay').empty();
 
     console.log('yay');
     exitButton();
@@ -128,6 +130,7 @@ const killButton = function () {
             console.log('hi')
             peopleKiiled.push(celebrities[numClicked]);
             console.log(peopleKiiled);
+            
             console.log(celebrities[numClicked]['name']);
             console.log('killButton works')
             numClicked += 1;
