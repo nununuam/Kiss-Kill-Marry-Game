@@ -59,6 +59,7 @@ console.log(celebrities.length);
 let peopleKiiled = [];
 let peoppleKissed = [];
 let peopleMarried = [];
+let singlePeople = [];
 
 let numClicked = 0;
 
@@ -90,6 +91,7 @@ $('#startButton').on('click', function (a) {
     killButton();
     marryButton();
 
+    
     
 });
 
@@ -190,20 +192,33 @@ const endResult = function (numClicked) {
     $('.profiles').empty();
     $('.gameButtons').empty();
     $('.marry').empty();
+
     console.log(numClicked);
-    $('.endGameResult').html('<h3>Game Over</h3>');
-    $('.endGameResult').append(`<p>1</p><p>2</p><p>3</p>`);
-    $('.endGameResult').append(`<div><p> "${peopleMarried[peopleMarried.length-1]['name']}"</p> <img id = 'marryProfile' src="${peopleMarried[peopleMarried.length-1]['img']}"</img></div>`);
+
+    $('.endGameResult').html('<h3>Congratulation</h3>');
+
+    $('.endGameResult').append(`<p>You have kiss ${peoppleKissed.length} people.</p><p>You have killed ${peopleKiiled.length} people.</p><p>You have attempted to marry ${peopleMarried.length} amount of people.</p>`);
+
+    $('.endGameResult').append(`<div><p>"${peopleMarried[peopleMarried.length-1]['name']}" is ${peopleMarried[peopleMarried.length-1]['status']}</p> <img id = 'marryProfile' src="${peopleMarried[peopleMarried.length-1]['img']}"</img><div>`);
+
     $('.endGameResult').append(`<button class= 'restartButton'>Restart</button>`)
 
 }
 
-//const restartButton = function(){
+const successfullyMarried = function(){
+    if (peopleMarried[peopleMarried.length-1]['status'] = 'single'){
+        return (`${peopleMarried[peopleMarried.length-1]['status']}. The union is a fail`)
+    }else{
+        return (`${peopleMarried[peopleMarried.length-1]['status']}. The union is a success.`)
+    }
+    
+}
+
     $('.endGameResult').on('click','.restartButton', function (g) {
         console.log('restarting')
         g.preventDefault();
         window.location.reload();
     })
-//}
+
 
 
