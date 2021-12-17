@@ -41,14 +41,14 @@ const celebrities= [{name:'Benedict Cumberbatch',
                         status:'single',
                         img:'https://www.lifeandstylemag.com/wp-content/uploads/2016/09/jennifer-lopez.jpg' },
 ]
-
+console.log(celebrities.length);
 
 
 let peopleKiiled = [];
 let peoppleKissed = [];
 let peopleMarried = [];
 
-let indexNum = 0;
+let numClicked = 1;
 
 
 
@@ -67,7 +67,7 @@ $('#startButton').on('click', function(a){
     exitButton();
     
     gameContinue();
-    theProfile(indexNum);
+    theProfile(numClicked);
     console.log();
     addGameButtons();
     
@@ -75,19 +75,20 @@ $('#startButton').on('click', function(a){
     killButton();
     marryButton();
 });
-const check= function(){if (indexNum < celebrities.length){
-    console.log('hi')
-}
-    else{
-        $('.initial').empty();
-        $('.profiles').empty();
-        $('gameButtons').empty();
-        
-        
-    }}
 
-    
-    
+const check= function(){
+    if (numClicked < celebrities.length-1){
+    console.log(numClicked);
+    console.log(celebrities.length);
+    console.log('hi')
+}else{
+    $('.initial').empty();
+    $('.profiles').empty();
+    $('.gameButtons').empty();
+    console.log('its working');
+    endResult(numClicked);
+    }}
+    check();
 
 
 
@@ -115,9 +116,9 @@ const exitButton = function(){
     
 }
 
-const theProfile = function(indexNum){
-    console.log(indexNum)
-    $('.profiles').html(`<img id = 'theProfileImage' src ="${celebrities[indexNum]['img']}">`);
+const theProfile = function(numClicked){
+    console.log(numClicked)
+    $('.profiles').html(`<img id = 'theProfileImage' src ="${celebrities[numClicked]['img']}">`);
     
 }
 const addGameButtons = function(){
@@ -128,15 +129,15 @@ const killButton= function(){
     $('#killButton').on('click', function(d){
         d.preventDefault();
 
-        peopleKiiled.push(celebrities[indexNum]['name']);
+        peopleKiiled.push(celebrities[numClicked]['name']);
         console.log(peopleKiiled);
-        console.log(celebrities[indexNum]['name']);
+        console.log(celebrities[numClicked]['name']);
 
         console.log('killButton works')
-        indexNum += 1;
+        numClicked += 1;
     
-        console.log(indexNum);
-        theProfile(indexNum);
+        console.log(numClicked);
+        theProfile(numClicked);
         check();
     })
 };
@@ -144,12 +145,12 @@ const killButton= function(){
 const kissButton = function(){
     $('#kissButton').on('click', function(e){
         e.preventDefault();
-        peoppleKissed.push(celebrities[indexNum]['name']);
+        peoppleKissed.push(celebrities[numClicked]['name']);
         console.log(peoppleKissed);
         console.log('kissButton works')
-        indexNum += 1;
-        console.log(indexNum);
-        theProfile(indexNum);
+        numClicked += 1;
+        console.log(numClicked);
+        theProfile(numClicked);
         check();
     })
 }
@@ -157,25 +158,25 @@ const kissButton = function(){
 const marryButton = function(){
     $('#marryButton').on('click', function(f){
         f.preventDefault();
-        peopleMarried.push(celebrities[indexNum]['name']);
+        peopleMarried.push(celebrities[numClicked]['name']);
         console.log(peopleMarried);
         marriedProfile();
         console.log('marryButton woks')
-        indexNum += 1;
-        console.log(indexNum);
-        theProfile(indexNum);
+        numClicked += 1;
+        console.log(numClicked);
+        theProfile(numClicked);
         check();
     })
 }
 
 const marriedProfile = function(){
-    $('.marry').html(`<img id = 'marryProfile' src="${celebrities[indexNum]['img']}"><p>You are currently trying to marry ${celebrities[indexNum]['name']}.`);
+    $('.marry').html(`<img id = 'marryProfile' src="${celebrities[numClicked]['img']}"><p>You are currently trying to marry ${celebrities[numClicked]['name']}.`);
 }
 
-const endResult = function(){
+const endResult = function(numClicked){
     $('.endGameResult').html('<h3>Game Over</h3>');
     $('.endGameResult').append(`<p>1</p><p>2</p><p>3</p>`);
-    $('.endGameResult').append(`<div><p> "${celebrities[indexNum]['name']}"</p> <img id = 'marryProfile' src="${celebrities[indexNum]['img']}"</img></div>`);
+    $('.endGameResult').append(`<div><p> "${celebrities[numClicked]['name']}"</p> <img id = 'marryProfile' src="${celebrities[numClicked]['img']}"</img></div>`);
 }
 
 
