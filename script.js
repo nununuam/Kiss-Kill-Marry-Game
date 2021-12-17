@@ -62,8 +62,11 @@ let peopleMarried = [];
 
 let numClicked = 0;
 
+$('div').on('click','#howToPlayButton', function (b) {
+    b.preventDefault();
 
-
+    $('.gameArea').html('<p class ="instruction">Every turn you will get a profile. You get to pick if you want to kiss kill or marry them by clicking the button. You have certain amount of time allocated before the game end. The time allocated is randomize. Who every you choose to marry at the end of the game will reveal if you actually ended up marrying them. Remember, whoever you choose to marry last at the end of the round is who you will see if it works out.</p>');
+});
 
 
 //WebPage section:
@@ -78,7 +81,7 @@ $('#startButton').on('click', function (a) {
     console.log('yay');
     exitButton();
 
-    gameContinue();
+    //gameContinue();
     theProfile(numClicked);
     console.log();
     addGameButtons();
@@ -86,24 +89,13 @@ $('#startButton').on('click', function (a) {
     kissButton();
     killButton();
     marryButton();
+
+    
 });
 
 
 
-
-
-
-$('#howToPlayButton').on('click', function (b) {
-    b.preventDefault();
-
-    $('.gameArea').html('<p class ="instruction">Every turn you will get a profile. You get to pick if you want to kiss kill or marry them by clicking the button. You have certain amount of time allocated before the game end. The time allocated is randomize. Who every you choose to marry at the end of the game will reveal if you actually ended up marrying them. Remember, whoever you choose to marry last at the end of the round is who you will see if it works out.</p>');
-});
-
-
-
-let gameContinue = function () {
-
-}
+//let gameContinue = function () {}
 
 let exitButtonClass = '#exitButton';
 const exitButton = function () {
@@ -112,6 +104,7 @@ const exitButton = function () {
     $(exitButtonClass).on('click', function (c) {
         c.preventDefault();
         console.log('exit button works')
+        window.location.reload();
     });
 
 }
@@ -205,12 +198,12 @@ const endResult = function (numClicked) {
 
 }
 
-const restartButton = function(){
-    $('.restartButton').on('click', function (g) {
-
+//const restartButton = function(){
+    $('.endGameResult').on('click','.restartButton', function (g) {
+        console.log('restarting')
         g.preventDefault();
         window.location.reload();
     })
-}
+//}
 
 
