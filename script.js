@@ -59,57 +59,43 @@ let peoppleKissed = [];
 let peopleMarried = [];
 let numClicked = 0;
 
-
-
-
-//WebPage section:
+//onClick, the game will start
 $('#startButton').on('click', function (a) {
     a.preventDefault();
-    console.log(celebrities.length);
-
-
-    //take away the howtoplay intructions
+    //take away the title
     $('h1').empty();
+    //Empty content of game area
     $('.gameArea').empty();
+    //take away the howtoplay intructions 
     $('.howToPlay').empty();
-
-    console.log('yay');
+    //call all the function needed for game to happen
     exitButton();
-
-    //gameContinue();
     theProfile(numClicked);
-    console.log();
     addGameButtons();
-
     kissButton();
     killButton();
     marryButton();
-
-    
-    
 });
-
-
-
-//let gameContinue = function () {}
 
 let exitButtonClass = '#exitButton';
 const exitButton = function () {
+    //change the start button id to exit button id
     $('#startButton').attr('id', 'exitButton')
+    //change start button word to exit
     $('#exitButton').html('Exit');
+    //on click it restart the page
     $(exitButtonClass).on('click', function (c) {
         c.preventDefault();
-        console.log('exit button works')
         window.location.reload();
     });
-
 }
 
+// changes the profile display and contents relating to it
 const theProfile = function (numClicked) {
-    console.log(numClicked)
     $('.profiles').html(`<h2>${celebrities[numClicked]['name']}</h2><img id = 'theProfileImage' src ="${celebrities[numClicked]['img']}"><p>Fun Fact: ${celebrities[numClicked]['funFact']}</p>`);
-
 }
+
+//create game buttons
 const addGameButtons = function () {
     $('.gameButtons').html('<button id="killButton">Kill</button><button id="kissButton">Kiss</button><button id="marryButton">Marry</button>')
 }
@@ -117,91 +103,69 @@ const addGameButtons = function () {
 const killButton = function () {
     $('#killButton').on('click', function (d) {
         d.preventDefault();
+        //whenever kill button is click, this check to see if the game comes to and end yet, if so it will bring the end of the game, if not it will continue with the game
         if (numClicked < celebrities.length - 1) {
-
-            console.log('hi')
             peopleKiiled.push(celebrities[numClicked]);
-            console.log(peopleKiiled);
-            
-            console.log(celebrities[numClicked]['name']);
-            console.log('killButton works')
             numClicked += 1;
-            console.log(numClicked);
             theProfile(numClicked);
         } else {
-
-            console.log('its working');
             endResult(numClicked);
         }
-
     })
 };
 
 const kissButton = function () {
     $('#kissButton').on('click', function (e) {
         e.preventDefault();
+        //whenever kiss button is click, this check to see if the game comes to and end yet, if so it will bring the end of the game, if not it will continue with the game
         if (numClicked < celebrities.length - 1) {
             peoppleKissed.push(celebrities[numClicked]);
-            console.log(peoppleKissed);
-            console.log('kissButton works')
             numClicked += 1;
-            console.log(numClicked);
             theProfile(numClicked);
         } else {
-
-            console.log('its working');
             endResult(numClicked);
         }
-
     })
 }
 
 const marryButton = function () {
-
     $('#marryButton').on('click', function (f) {
-
         f.preventDefault();
+        //whenever marry button is click, this check to see if the game comes to and end yet, if so it will bring the end of the game, if not it will continue with the game
         if (numClicked < celebrities.length - 1) {
             peopleMarried.push(celebrities[numClicked]);
-            console.log(peopleMarried);
             marriedProfile();
-            console.log('marryButton woks')
             numClicked += 1;
-
-            console.log(numClicked);
             theProfile(numClicked);
         } else {
-
-            console.log('its working');
             endResult(numClicked);
         }
     })
 }
 
+//this fuction is resposible placing the person the user choice to marry last at the bottom of the screen as a reminder.
 const marriedProfile = function () {
     $('.marry').html(`<img id = 'marryProfile' src="${celebrities[numClicked]['img']}"><p>You are currently trying to marry ${celebrities[numClicked]['name']}.`);
 }
 
 const endResult = function (numClicked) {
+    //clears out contents of the game
     $('.initial').empty();
     $('.profiles').empty();
     $('.gameButtons').empty();
     $('.marry').empty();
-
-    console.log(numClicked);
-
+    //input diplay
     $('.endGameResult').html('<h3>Congratulation!</h3>');
-
+    //Display user data during the game
     $('.endGameResult').append(`<p>You have kiss ${peoppleKissed.length} people.</p><p>You have killed ${peopleKiiled.length} people.</p><p>You have attempted to marry ${peopleMarried.length} amount of people.</p>`);
-
+    //display who they choice to marry last and check if it is a success or not
     $('.endGameResult').append(`<div><p>"${peopleMarried[peopleMarried.length-1]['name']}" is ${peopleMarried[peopleMarried.length-1]['status']}</p> <img id = 'marryProfile' src="${peopleMarried[peopleMarried.length-1]['img']}"</img><div>`);
-
+    //Create a restart button to allow user to restart the game
     $('.endGameResult').append(`<button class= 'restartButton'>Restart</button>`)
-
 }
 
+//restart button to allow user to restart the game by refreshing the page
 $('.endGameResult').on('click','.restartButton', function (g) {
-    console.log('restarting')
     g.preventDefault();
     window.location.reload();
 })
